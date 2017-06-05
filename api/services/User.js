@@ -6,55 +6,23 @@ var schema = new Schema({
     },
     email: {
         type: String,
+        required: true,
         validate: validators.isEmail(),
-        excel: "User Email",
         unique: true
     },
-    dob: {
-        type: Date,
-        excel: {
-            name: "Birthday",
-            modify: function (val, data) {
-                return moment(val).format("MMM DD YYYY");
-            }
-        }
+    designation: {
+        type: Schema.Types.ObjectId,
+        ref: "Designation",
     },
     photo: {
-        type: String,
-        default: "",
-        excel: [{
-            name: "Photo Val"
-        }, {
-            name: "Photo String",
-            modify: function (val, data) {
-                return "http://abc/" + val;
-            }
-        }, {
-            name: "Photo Kebab",
-            modify: function (val, data) {
-                return data.name + " " + moment(data.dob).format("MMM DD YYYY");
-            }
-        }]
+        type: String
     },
-    password: {
-        type: String,
-        default: ""
-    },
-    forgotPassword: {
-        type: String,
-        default: ""
-    },
-    mobile: {
-        type: String,
-        default: ""
-    },
-    otp: {
-        type: String,
-        default: ""
+    appliedDesignation: {
+        type: Schema.Types.ObjectId,
+        ref: "Designation"
     },
     accessToken: {
-        type: [String],
-        index: true
+        type: String
     },
     googleAccessToken: String,
     googleRefreshToken: String,
@@ -69,14 +37,19 @@ var schema = new Schema({
         type: String,
         default: "User",
         enum: ['User', 'Admin']
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    googleId: {
+        type: String,
     }
 });
 
 schema.plugin(deepPopulate, {
     populate: {
-        'user': {
-            select: 'name _id'
-        }
+
     }
 });
 schema.plugin(uniqueValidator);
