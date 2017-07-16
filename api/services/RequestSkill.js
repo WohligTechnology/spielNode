@@ -11,11 +11,14 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
+
     },
     skill: {
         type: Schema.Types.ObjectId,
-        ref: "Skill"
+        ref: "Skill",
+        required: true
     },
     approvalStatus: {
         type: String,
