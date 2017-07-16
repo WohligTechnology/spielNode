@@ -13,7 +13,7 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    SkillId: {
+    skillId: {
         type: Schema.Types.ObjectId,
         ref: "Skill"
     },
@@ -40,5 +40,52 @@ schema.plugin(timestamps);
 module.exports = mongoose.model('RequestSkill', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
-var model = {};
+var model = {
+    requestApproval: function (data, callback) {
+        if (_.isEmpty(data)) {
+            callback("Empty Request", null);
+        } else {
+            RequestSkill.save(data).exec(function (err, data) {
+                if (err) {
+                    callback("Request Approval Failed", null)
+                } else {
+                    callback(null, true);
+                }
+            })
+        }
+    },
+    requestResponded: function (data, callback) {
+        if (_.isEmpty(data)) {
+            callback("Empty Request", null);
+        } else {
+            RequestSkill.save(data).exec(function (err, RequestSkillRespo) {
+                if (err) {
+                    callback("Request Approval Failed", null)
+                } else {
+                    var completedSkillObj = {
+                        skill: data.skill,
+                        timestamp: Date.now()
+                    }
+                    User.update({
+                        $or: [{
+                            accessToken: data.accessToken
+                        }, {
+                            _id: data.user
+                        }]
+                    }, {
+                        $addToSet: {
+                            completedSkill: completedSkillObj
+                        }
+                    }).exec(function (err, UserRespo) {
+                        if (err) {
+                            callback(err, null);
+                        } else {
+                            callback(null, "Updated Skills Of  User");
+                        }
+                    })
+                }
+            })
+        }
+    }
+};
 module.exports = _.assign(module.exports, exports, model);

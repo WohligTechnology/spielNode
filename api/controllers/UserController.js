@@ -18,9 +18,29 @@ var controller = {
             failureRedirect: '/'
         }, res.socialLogin)(req, res);
     },
-    loginAPI: function (req, res) {
+    isUserVerified: function (req, res) {
         if (req.body) {
-            req.model.loginAPI(req.body, res.callback);
+            req.model.isUserVerified(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: "Invalid Request"
+            });
+        }
+    },
+    getUserList: function (req, res) {
+        if (req.body) {
+            req.model.getUserList(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: "Invalid Request"
+            });
+        }
+    },
+    getUserDetails: function (req, res) {
+        if (req.body) {
+            req.model.getUserDetails(req.body, res.callback);
         } else {
             res.json({
                 value: false,
