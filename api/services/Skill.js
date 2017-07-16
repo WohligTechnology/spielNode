@@ -16,7 +16,7 @@ var schema = new Schema({
         uniqueCaseInsensitive: true
     },
     SkillCategory: {
-        SkillCategoryId: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "SkillCategory"
     }
 });
