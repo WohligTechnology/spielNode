@@ -120,8 +120,9 @@ var controller = {
         }
     },
     getDetails: function (req, res) {
+        console.log(req.user);
         if (!req.body.user) {
-            res.body.user = req.user.id;
+            req.body.user = req.user._id;
         }
         User.getDetails(req.body, res.callback);
 
