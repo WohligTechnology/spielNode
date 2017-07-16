@@ -20,7 +20,7 @@ var schema = new Schema({
     approvalStatus: {
         type: String,
         default: "Pending",
-        enum: ['Pending', 'Aproved', 'Rejected']
+        enum: ['Pending', 'Approved', 'Rejected']
     },
     reasonForRequest: {
         type: String,

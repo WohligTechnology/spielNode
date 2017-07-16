@@ -28,6 +28,10 @@ var schema = new Schema({
             type: Date
         }
     }],
+    password: {
+        type: String,
+        default: "wohlig123"
+    },
     photo: {
         type: String
     },
@@ -241,6 +245,37 @@ var model = {
                 callback(null, data);
             }
         })
+    },
+    getDetails: function (data, callback) {
+        async.parallel({
+            user: function (callback1) {
+                User.findOne({
+                    _id: data.user
+                }).deepPopulate("designation.designation completedSkill.skill", "designation.designation completedSkill.skill").exec(callback1);
+            },
+            skill: function (callback1) {
+                Skill.find().deepPopulate("skillCategory", "skillCategory").exec(callback1);
+            },
+            requestedSkill: function (callback1) {
+                RequestSkill.find({
+                    user: data.user,
+                    approvalStatus: {
+                        $in: ["Pending", "Approved"]
+                    }
+
+                }).exec(callback1);
+            }
+        }, function (err, results) {
+            if (err) {
+                callback(err, null)
+            } else {
+                green(results)
+                red(results.user)
+
+                delete(results.user.password);
+                callback(null, results)
+            }
+        });
     }
 };
 module.exports = _.assign(module.exports, exports, model);
