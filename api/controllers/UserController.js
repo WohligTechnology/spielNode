@@ -18,6 +18,16 @@ var controller = {
             failureRedirect: '/'
         }, res.socialLogin)(req, res);
     },
+    loginAPI: function (req, res) {
+        if (req.body) {
+            req.model.loginAPI(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: "Invalid Request"
+            });
+        }
+    },
     profile: function (req, res) {
         if (req.body && req.body.accessToken) {
             User.profile(req.body, res.callback);

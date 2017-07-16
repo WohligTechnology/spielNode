@@ -11,8 +11,13 @@ var schema = new Schema({
         unique: true
     },
     designation: {
-        type: Schema.Types.ObjectId,
-        ref: "Designation",
+        designation: {
+            type: Schema.Types.ObjectId,
+            ref: "Designation",
+        },
+        timestamp: {
+            type: Date
+        }
     },
     photo: {
         type: String
@@ -136,6 +141,25 @@ var model = {
             data.googleAccessToken = accessToken;
             data.save(function () {});
         });
+    },
+    loginAPI: function (data, callback) {
+        if (_.isEmpty(data)) {
+            callback("No Data Found in Request", null)
+        } else {
+            User.findOne({
+                email: data.email
+            }).exec(function (err, data) {
+                if (err || _.isEmpty(data)) {
+                    callback(err, null);
+                } else {
+                    if (data.isVerified) {
+                        callback(null, "Verified");
+                    } else {
+                        callback(null, "Not Verified");
+                    }
+                }
+            })
+        }
     }
 
 };

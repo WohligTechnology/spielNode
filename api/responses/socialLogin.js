@@ -14,7 +14,7 @@ module.exports = function (profile) {
                     if (data.accessLevel != "Admin") {
                         data.accessToken[0] = "AccessNotAvailable";
                     }
-                    res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);
+                    res.redirect(req.session.returnUrl + "/" + data.accessToken);
                     req.session.destroy(function () {});
                 }
             });

@@ -24,7 +24,7 @@ process.chdir(__dirname);
 var mongoose;
 mongoose = require('mongoose');
 
-global["database"] = "database";
+global["database"] = "Spiel";
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/' + database, function (err) {
     if (err) {
