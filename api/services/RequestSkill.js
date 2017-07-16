@@ -13,7 +13,7 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    skillId: {
+    skill: {
         type: Schema.Types.ObjectId,
         ref: "Skill"
     },
@@ -29,7 +29,7 @@ var schema = new Schema({
     reasonForResponse: {
         type: String
     },
-    responseTime: {
+    responseTimestamp: {
         type: Date
     }
 });

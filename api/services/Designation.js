@@ -15,15 +15,25 @@ var schema = new Schema({
         unique: true
     },
     neededSkill: [{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: "Skill"
     }]
 });
 
-schema.plugin(deepPopulate, {});
+schema.plugin(deepPopulate, {
+    populate: {
+        "neededSkill": {
+            select: '_id name skillCategory'
+        },
+        "neededSkill.skillCategory": {
+            select: '_id name'
+        }
+    }
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Designation', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "neededSkill.skillCategory", "neededSkill.skillCategory"));
 var model = {};
 module.exports = _.assign(module.exports, exports, model);
