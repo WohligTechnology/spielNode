@@ -19,15 +19,6 @@ var schema = new Schema({
             type: Date
         }
     }],
-    completedSkill: [{
-        skill: {
-            type: Schema.Types.ObjectId,
-            ref: "Skill"
-        },
-        timestamp: {
-            type: Date
-        }
-    }],
     password: {
         type: String,
         default: "wohlig123"
@@ -63,16 +54,15 @@ var schema = new Schema({
     googleId: {
         type: String,
     },
-    mobile: Number
+    mobile: {
+        type: String,
+    }
 });
 
 schema.plugin(deepPopulate, {
     populate: {
         "designation.designation": {
             select: '_id name'
-        },
-        "completedSkill.skill": {
-            select: "_id name"
         }
     }
 });
@@ -81,7 +71,7 @@ schema.plugin(timestamps);
 
 module.exports = mongoose.model('User', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user designation.designation completedSkill.skill", "user designation.designation completedSkill.skill"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user designation.designation ", "user designation.designation "));
 var model = {
 
     existsSocial: function (user, callback) {
@@ -196,9 +186,8 @@ var model = {
             designation: 1,
             name: 1,
             accessToken: 1,
-            completedSkill: 1,
 
-        }).deepPopulate("designation.designation completedSkill.skill", "designation.designation completedSkill.skill").sort({
+        }).deepPopulate("designation.designation", "designation.designation").sort({
             name: 1
         }).skip(pagestartfrom).limit(10).exec(function (err, data) {
             if (err || _.isEmpty(data)) {
@@ -236,7 +225,7 @@ var model = {
                     accessToken: data.accessToken
                 }
             ]
-        }).deepPopulate("designation.designation completedSkill.skill", "designation.designation completedSkill.skill").exec(function (err, data) {
+        }).deepPopulate("designation.designation ", "designation.designation ").exec(function (err, data) {
             if (err) {
                 callback(err, null);
             } else if (_.isEmpty(data)) {
@@ -251,7 +240,7 @@ var model = {
             user: function (callback1) {
                 User.findOne({
                     _id: data.user
-                }).deepPopulate("designation.designation completedSkill.skill", "designation.designation completedSkill.skill").exec(callback1);
+                }).deepPopulate("designation.designation ", "designation.designation ").exec(callback1);
             },
             skill: function (callback1) {
                 Skill.find().deepPopulate("skillCategory", "skillCategory").exec(callback1);
