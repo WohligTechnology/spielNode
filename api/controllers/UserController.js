@@ -125,6 +125,11 @@ var controller = {
         }
         User.getDetails(req.body, res.callback);
 
+    },
+    Login: function (req, res) {
+        if (req.body) {
+            User.Login(req.body, res.callback);
+        }
     }
 };
 module.exports = _.assign(module.exports, controller);

@@ -190,7 +190,7 @@ var model = {
         if (data.page) {
             page = data.page
         }
-        var pagestartfrom = (page - 1) * 10;
+        var pagestartfrom = (page - 1) * Config.maxRow;
         User.find({}, {
             photo: 1,
             designation: 1,
@@ -276,6 +276,22 @@ var model = {
                 callback(null, results)
             }
         });
+    },
+    Login: function (data, callback) {
+        User.findOne({
+            $or: [{
+                email: data.email,
+                password: data.password
+            }, {
+                accessToken: data.accessToken
+            }]
+        }).exec(function (err, data) {
+            if (err) {
+                callback(err, null)
+            } else {
+                callback(null, data)
+            }
+        })
     }
 };
 module.exports = _.assign(module.exports, exports, model);
