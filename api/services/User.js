@@ -49,8 +49,8 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        default: "User",
-        enum: ['User', 'Admin']
+        default: "Pending",
+        enum: ['User', 'Admin', 'Pending', 'Moderator']
     },
     isVerified: {
         type: Boolean,
