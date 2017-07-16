@@ -56,6 +56,9 @@ var schema = new Schema({
     },
     mobile: {
         type: String,
+    },
+    dob: {
+        type: Date,
     }
 });
 
@@ -214,7 +217,7 @@ var model = {
             } else {
                 callback(null, data);
             }
-        })
+        });
     },
     getMyDetails: function (data, callback) {
         User.findOne({
@@ -233,7 +236,7 @@ var model = {
             } else {
                 callback(null, data);
             }
-        })
+        });
     },
     getDetails: function (data, callback) {
         async.parallel({
