@@ -1,0 +1,62 @@
+{
+    "title": "Create Notification",
+    "name": "Notification",
+    "jsonPage": "viewNotification",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["Notification"],
+    "fields": [{
+        "name": "User",
+        "type": "tags",
+        "tableRef": "user",
+        "dropDownType": "single",
+        "dropDownField": "name",
+        "searchApi": "searchCall",
+        "placeholder": "Enter user",
+        "id": "user",
+        "validation": ["", "trim", ""],
+        "url": "User/search"
+    }, {
+        "name": "Response Type",
+        "type": "tags",
+        "tableRef": "responseType",
+        "placeholder": "Enter response",
+        "id": "responseType",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "dropDownField": "",
+        "dropDownType": "single",
+        "onView": true,
+        "dropDown": ["Aproved", "Rejected"]
+    }, {
+        "name": "Response",
+        "type": "text",
+        "tableRef": "Response",
+        "placeholder": "Enter Response",
+        "id": "Response",
+        "validation": ["", "trim", ""],
+        "url": ""
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitNotification",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewNotification"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewNotification"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Notification/save"
+    }
+}

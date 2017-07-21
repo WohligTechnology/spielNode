@@ -11,14 +11,12 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+        ref: "User"
 
     },
     skill: {
         type: Schema.Types.ObjectId,
-        ref: "Skill",
-        required: true
+        ref: "Skill"
     },
     approvalStatus: {
         type: String,
@@ -27,7 +25,6 @@ var schema = new Schema({
     },
     reasonForRequest: {
         type: String,
-        required: true
     },
     reasonForResponse: {
         type: String
@@ -37,12 +34,21 @@ var schema = new Schema({
     }
 });
 
-schema.plugin(deepPopulate, {});
+schema.plugin(deepPopulate, {
+    populate: {
+        "user": {
+            select: '_id name'
+        },
+        "skill": {
+            select: '_id name'
+        }
+    }
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('RequestSkill', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user skill", "user skill"));
 var model = {
     requestApproval: function (data, callback) {
         if (_.isEmpty(data)) {

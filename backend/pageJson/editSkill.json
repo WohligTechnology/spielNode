@@ -1,0 +1,56 @@
+{
+    "title": "Create Skill",
+    "name": "Skill",
+    "jsonPage": "viewSkill",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["", "trim", ""],
+        "url": ""
+    }, {
+        "name": "Skill Category",
+        "type": "tags",
+        "tableRef": "skillCategory",
+        "dropDownType": "single",
+        "dropDownField": "name",
+        "searchApi": "searchCall",
+        "placeholder": "Enter skillCategory",
+        "id": "skillCategory",
+        "validation": ["", "trim", ""],
+        "url": "skillCategory/search"
+    }],
+
+    "action": [{
+        "name": "submit",
+        "action": "submitSkill",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSkill"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSkill"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Skill/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Skill/getOne",
+        "params": "_id"
+    }
+}

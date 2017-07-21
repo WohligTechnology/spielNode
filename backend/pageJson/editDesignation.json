@@ -1,0 +1,55 @@
+{
+    "title": "Edit Designation",
+    "name": "Designation",
+    "jsonPage": "viewDesignation",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["required", "trim", "unique"],
+        "url": ""
+    }, {
+        "name": "Needed Skill",
+        "type": "tags",
+        "tableRef": "neededSkill",
+        "dropDownType": "multiple",
+        "dropDownField": "name",
+        "searchApi": "searchCall",
+        "placeholder": "Enter needed Skill",
+        "id": "neededSkill",
+        "validation": ["", "trim", ""],
+        "url": "Skill/search"
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitDesignation",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDesignation"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewDesignation"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Designation/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Designation/getOne",
+        "params": "_id"
+    }
+}

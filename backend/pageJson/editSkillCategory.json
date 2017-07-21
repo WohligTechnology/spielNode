@@ -1,0 +1,43 @@
+{
+    "title": "Create SkillCategory",
+    "name": "SkillCategory",
+    "jsonPage": "viewSkillCategory",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["", "trim", ""],
+        "url": ""
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitSkillCategory",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSkillCategory"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewSkillCategory"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "SkillCategory/save"
+    },
+    "preApi": {
+        "url": "SkillCategory/getOne",
+        "params": "_id"
+    }
+}

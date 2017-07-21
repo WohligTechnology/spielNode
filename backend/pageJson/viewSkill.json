@@ -1,0 +1,66 @@
+{
+    "title": "Skill",
+    "description": "List of Skill",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "name",
+            "isSort": "",
+            "tableRef": "name"
+        },
+        {
+            "name": "Skill Category",
+            "isSort": "",
+            "tableRef": "skillCategory",
+            "field": "name"
+        }
+    ],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editSkill",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete Skill",
+        "content": "Are you sure you want to delete Skill?",
+        "api": "Skill/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Excel Export",
+        "icon": "print",
+        "class": "btn-danger",
+        "type": "redirect",
+        "action": "Skill/generateExcel",
+        "linkType": "admin"
+    }, {
+        "name": "Upload Excel",
+        "icon": "delete",
+        "class": "btn-warning",
+        "type": "redirect",
+        "action": "excel-upload/Skill",
+        "linkType": "internal"
+    }, {
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createSkill"
+    }],
+    "apiCall": {
+        "url": "Skill/search",
+        "params": "_id"
+    }
+}

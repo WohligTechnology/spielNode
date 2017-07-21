@@ -66,6 +66,9 @@ schema.plugin(deepPopulate, {
     populate: {
         "designation.designation": {
             select: '_id name'
+        },
+        "appliedDesignation": {
+            select: '_id name'
         }
     }
 });
@@ -74,7 +77,7 @@ schema.plugin(timestamps);
 
 module.exports = mongoose.model('User', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user designation.designation ", "user designation.designation "));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user designation.designation appliedDesignation", "user designation.designation  appliedDesignation"));
 var model = {
 
     existsSocial: function (user, callback) {

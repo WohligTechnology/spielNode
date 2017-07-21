@@ -1,0 +1,91 @@
+{
+    "title": "Create RequestSkill",
+    "name": "RequestSkill",
+    "jsonPage": "viewRequestSkill",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["RequestSkill"],
+    "fields": [{
+            "name": "User",
+            "type": "tags",
+            "tableRef": "user",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter user",
+            "id": "user",
+            "validation": ["", "trim", ""],
+            "url": "User/search"
+        }, {
+            "name": " Skill",
+            "type": "tags",
+            "tableRef": "skill",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter Skill",
+            "id": "skill",
+            "validation": ["", "trim", ""],
+            "url": "Skill/search"
+        }, {
+            "name": "Approval Status",
+            "type": "tags",
+            "tableRef": "approvalStatus",
+            "placeholder": "Enter approvalStatus",
+            "id": "approvalStatus",
+            "validation": ["", "trim", ""],
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Pending", "Aproved", "Rejected"]
+        },
+        {
+            "name": "Reason For Request",
+            "type": "text",
+            "tableRef": "reasonForRequest",
+            "placeholder": "Enter reason For Request",
+            "id": "reasonForRequest",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Reason For Response",
+            "type": "text",
+            "tableRef": "reasonForResponse",
+            "placeholder": "Enter reason For Response",
+            "id": "reasonForResponse",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Response Timestamp",
+            "type": "date",
+            "tableRef": "responseTimestamp",
+            "placeholder": "Enter responseTimestamp",
+            "id": "responseTimestamp",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitRequestSkill",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewRequestSkill"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewRequestSkill"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "RequestSkill/save"
+    }
+}
