@@ -36,7 +36,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             callback: "&ngCallback"
         },
         link: function ($scope, element, attrs) {
-            console.log($scope.model);
+            console.log("**********scope.model", $scope.model);
             $scope.showImage = function () {};
             $scope.check = true;
             if (!$scope.type) {
@@ -58,7 +58,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             // }
 
             $scope.$watch("image", function (newVal, oldVal) {
-                console.log(newVal, oldVal);
+                console.log("newvalue", newVal, "oldvalue", oldVal);
                 isArr = _.isArray(newVal);
                 if (!isArr && newVal && newVal.file) {
                     $scope.uploadNow(newVal);
@@ -78,6 +78,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             });
 
             if ($scope.model) {
+                console.log("****scopemodel", $scope.model)
                 if (_.isArray($scope.model)) {
                     console.log("***", $scope.model)
                     $scope.image = [];
@@ -105,7 +106,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                 var Template = this;
                 image.hide = true;
                 var formData = new FormData();
-                formData.append('file', image.file, image.name);
+                formData.append('file', image.file, image.file.name);
                 $http.post(uploadurl, formData, {
                     headers: {
                         'Content-Type': undefined
