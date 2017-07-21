@@ -26,7 +26,7 @@ module.exports = {
    ***************************************************************************/
 
   port: 8080,
-  realHost: "https://spiel.wohlig.co.in",
+  realHost: "https://spiel.wohlig.com",
   emails: ["chintan@wohlig.com", "jagruti@wohlig.com", "tushar@wohlig.com", "chirag@wohlig.com", "harsh@wohlig.com"]
 
   /***************************************************************************
