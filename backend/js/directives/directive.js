@@ -79,6 +79,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
 
             if ($scope.model) {
                 if (_.isArray($scope.model)) {
+                    console.log("***", $scope.model)
                     $scope.image = [];
                     _.each($scope.model, function (n) {
                         $scope.image.push({
@@ -116,13 +117,13 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                     if ($scope.isMultiple) {
                         if ($scope.inObject) {
                             $scope.model.push({
-                                "image": data.data[0]
+                                "image": data[0]
                             });
                         } else {
                             if (!$scope.model) {
                                 $scope.clearOld();
                             }
-                            $scope.model.push(data.data[0]);
+                            $scope.model.push(data[0]);
                         }
                     } else {
                         if (_.endsWith(data.data[0], ".pdf")) {
@@ -131,7 +132,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                             $scope.type = "image";
                         }
                         $scope.model = data.data[0];
-                        console.log($scope.model, 'model means blob');
+                        console.log($scope.model, 'model means blob')
 
                     }
                     $timeout(function () {
@@ -143,7 +144,6 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
         }
     };
 });
-
 
 
 myApp.directive('onlyDigits', function () {
@@ -440,8 +440,9 @@ myApp.directive('viewField', function ($http, $filter) {
             $scope.form = {};
             $scope.objectDepth = function () {
                 if (_.isObjectLike($scope.storeObj)) {
-                    if ($scope.storeValue[$scope.storeObj.field]) {
-                        $scope.form.model = $scope.storeValue[$scope.storeObj.field][$scope.storeObj.tableRef];
+                    console.log("")
+                    if ($scope.storeValue[$scope.storeObj.tableRef]) {
+                        $scope.form.model = $scope.storeValue[$scope.storeObj.tableRef][$scope.storeObj.field];
                         $scope.storeObj = $scope.storeObj.tableRef;
                         if (_.isObjectLike($scope.storeObj)) {
                             $scope.objectDepth();
@@ -449,11 +450,34 @@ myApp.directive('viewField', function ($http, $filter) {
                     }
                 }
             };
-            if (_.isObjectLike($scope.type.tableRef)) {
-                $scope.storeObj = $scope.type.tableRef;
+            // $scope.form = {};
+            // console.log("in directive: ", $scope.type);
+            // console.log("tableRef: ", $scope.type.tableRef);
+            // console.log("value: ", $scope.value);
+            // console.log("tableRef value: ", $scope.value);
+            // console.log("$scope.storeObj", $scope.storeObj);
+            // $scope.objectDepth = function () {
+            //     if (_.isObjectLike($scope.storeObj)) {
+            //         console.log("$scope.storeObj", $scope.storeObj);
+            //         if ($scope.storeValue[$scope.storeObj.tableRef]) {
+            //             console.log("storeValue", $scope.storeObj.tableRef);
+            //             console.log("$scope.storeValue", $scope.storeValue);
+            //             $scope.form.model = $scope.storeValue[$scope.storeObj.tableRef][$scope.storeObj.field];
+            //             $scope.storeObj = $scope.storeValue[$scope.storeObj.tableRef];
+            //             console.log(" $scope.form.model", $scope.form.model);
+
+            //             console.log(" $scope.storeObj.field", $scope.storeObj.field);
+            //             console.log("  $scope.storeObj", $scope.storeObj)
+            //             if (_.isObjectLike($scope.storeObj)) {
+            //                 $scope.objectDepth();
+            //             }
+            //         }
+            //     }
+            // };
+            if (_.isObjectLike($scope.value[$scope.type.tableRef]) && $scope.type.type != 'date') {
+                $scope.storeObj = $scope.type;
                 $scope.storeValue = $scope.value;
                 $scope.objectDepth();
-
             } else {
                 $scope.form.model = $scope.value[$scope.type.tableRef];
             }

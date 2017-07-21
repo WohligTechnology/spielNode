@@ -18,6 +18,7 @@
                 <tr ng-repeat="data in model | filter:search.text ">
                     <td ng-repeat="field2 in type.fields" ng-if="field2.onView && field2.type == 'selectFromTable'"> {{data[field2.tableRef+'-nameOnly']}}</td>
                     <td ng-repeat="field2 in type.fields" ng-if="field2.onView && field2.type != 'selectFromTable'">
+                        <!--{{field2}} data: {{data}}-->
                         <view-field type="field2" value="data"></view-field>
                     </td>
                     <td>
