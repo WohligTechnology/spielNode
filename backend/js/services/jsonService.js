@@ -42,7 +42,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
 
     var modalInstance = $uibModal.open({
       // animation: $scope.animationsEnabled,
-      templateUrl: '/backend/views/modal/conf-delete.html',
+      templateUrl: 'views/modal/conf-delete.html',
       size: 'sm',
       scope: this
     });
@@ -56,7 +56,7 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
     // var actionToPerformOnConfirm = action;
     console.log("in model");
     var modalInstance = $uibModal.open({
-      templateUrl: '/backend/views/modal/conf-delete.html',
+      templateUrl: 'views/modal/conf-delete.html',
       size: "lg",
       resolve: {
         title: title,
