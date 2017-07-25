@@ -38,7 +38,7 @@
             "dropDownField": "",
             "dropDownType": "single",
             "onView": true,
-            "dropDown": ["Pending", "Aproved", "Rejected"]
+            "dropDown": ["Pending", "Approved", "Rejected"]
         },
         {
             "name": "Reason For Request",
