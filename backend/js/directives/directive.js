@@ -439,49 +439,10 @@ myApp.directive('viewField', function ($http, $filter) {
                 $scope.type.type = "text";
             }
             $scope.form = {};
-            $scope.objectDepth = function () {
-                if (_.isObjectLike($scope.storeObj)) {
-                    console.log("")
-                    if ($scope.storeValue[$scope.storeObj.tableRef]) {
-                        $scope.form.model = $scope.storeValue[$scope.storeObj.tableRef][$scope.storeObj.field];
-                        $scope.storeObj = $scope.storeObj.tableRef;
-                        if (_.isObjectLike($scope.storeObj)) {
-                            $scope.objectDepth();
-                        }
-                    }
-                }
-            };
-            // $scope.form = {};
-            // console.log("in directive: ", $scope.type);
-            // console.log("tableRef: ", $scope.type.tableRef);
-            // console.log("value: ", $scope.value);
-            // console.log("tableRef value: ", $scope.value);
-            // console.log("$scope.storeObj", $scope.storeObj);
-            // $scope.objectDepth = function () {
-            //     if (_.isObjectLike($scope.storeObj)) {
-            //         console.log("$scope.storeObj", $scope.storeObj);
-            //         if ($scope.storeValue[$scope.storeObj.tableRef]) {
-            //             console.log("storeValue", $scope.storeObj.tableRef);
-            //             console.log("$scope.storeValue", $scope.storeValue);
-            //             $scope.form.model = $scope.storeValue[$scope.storeObj.tableRef][$scope.storeObj.field];
-            //             $scope.storeObj = $scope.storeValue[$scope.storeObj.tableRef];
-            //             console.log(" $scope.form.model", $scope.form.model);
-
-            //             console.log(" $scope.storeObj.field", $scope.storeObj.field);
-            //             console.log("  $scope.storeObj", $scope.storeObj)
-            //             if (_.isObjectLike($scope.storeObj)) {
-            //                 $scope.objectDepth();
-            //             }
-            //         }
-            //     }
-            // };
-            if (_.isObjectLike($scope.value[$scope.type.tableRef]) && $scope.type.type != 'date') {
-                $scope.storeObj = $scope.type;
-                $scope.storeValue = $scope.value;
-                $scope.objectDepth();
-            } else {
-                $scope.form.model = $scope.value[$scope.type.tableRef];
-            }
+           
+           
+            $scope.form.model = $scope.value[$scope.type.tableRef];
+            
 
             $scope.template = "views/viewField/" + $scope.type.type + ".html";
         }

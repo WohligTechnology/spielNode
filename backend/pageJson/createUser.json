@@ -22,6 +22,15 @@
             "validation": ["", "trim", "unique"],
             "url": ""
         },
+         {
+            "name": "Password",
+            "type": "text",
+            "tableRef": "password",
+            "placeholder": "Enter password",
+            "id": "password",
+            "validation": ["", "trim", "unique"],
+            "url": ""
+        },
         {
             "name": "Designation",
             "type": "box",
@@ -108,7 +117,7 @@
         },
         {
             "name": "Mobile",
-            "type": "number",
+            "type": "text",
             "tableRef": "mobile",
             "placeholder": "Enter mobile",
             "id": "mobile",
