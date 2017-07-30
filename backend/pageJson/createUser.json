@@ -22,7 +22,7 @@
             "validation": ["", "trim", "unique"],
             "url": ""
         },
-         {
+        {
             "name": "Password",
             "type": "text",
             "tableRef": "password",
@@ -74,20 +74,9 @@
             "onView": true,
             "validation": ["required", "trim", "unique"],
             "url": ""
-        }, {
-            "name": "AppliedDesignation",
-            "type": "tags",
-            "tableRef": "appliedDesignation",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter applied Designation",
-            "id": "appliedDesignation",
-            "validation": ["", "trim", ""],
-            "url": "Designation/search"
         },
         {
-            "name": "AccessLevel",
+            "name": "Access Level",
             "type": "tags",
             "tableRef": "accessLevel",
             "placeholder": "Enter Title",
@@ -98,22 +87,6 @@
             "dropDownType": "single",
             "onView": true,
             "dropDown": ["User", "Admin", "Pending", "Moderator"]
-        }, {
-            "name": "Verified",
-            "type": "checkbox",
-            "tableRef": "isVerified",
-            "placeholder": "Enter Verified",
-            "id": "isVerified",
-            "validation": ["required", "trim", "unique"],
-            "url": ""
-        }, {
-            "name": "GoogleId",
-            "type": "url",
-            "tableRef": "googleId",
-            "placeholder": "Enter googleId",
-            "id": "googleId",
-            "validation": ["required", "trim", "unique"],
-            "url": ""
         },
         {
             "name": "Mobile",
