@@ -25,6 +25,14 @@ module.exports = function (grunt) {
         assets: {
             files: [{
                 expand: true,
+                cwd: './assets',
+                src: ['**'],
+                dest: '.tmp/public'
+            }]
+        },
+        frontend: {
+            files: [{
+                expand: true,
                 cwd: './frontend',
                 src: ['**'],
                 dest: '.tmp/public'
