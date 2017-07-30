@@ -6,11 +6,13 @@
     "urlFields": ["_id"],
     "fields": [{
         "name": "User",
+        "type": "selectFromTable",
         "isSort": "",
         "tableRef": "user",
         "field": "name"
     }, {
         "name": "Skill",
+        "type": "selectFromTable",
         "isSort": "",
         "tableRef": "skill",
         "field": "name"

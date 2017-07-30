@@ -10,27 +10,33 @@ myApp.factory('NavigationService', function ($http) {
         name: "Users",
         classis: "active",
         sref: "#!/page/viewUser//",
-        icon: "phone"
+        icon: "fa-user-o"
     }, {
         name: "Designation",
         classis: "active",
-        sref: "#!/page/viewDesignation//"
+        sref: "#!/page/viewDesignation//",
+        icon: "fa-id-badge"
     }, {
         name: "Notification",
         classis: "active",
-        sref: "#!/page/viewNotification//"
+        sref: "#!/page/viewNotification//",
+        icon: "fa-bell-o"
     }, {
         name: "RequestSkill",
         classis: "active",
-        sref: "#!/page/viewRequestSkill//"
+        sref: "#!/page/viewRequestSkill//",
+        icon: "fa-check-square-o "
     }, {
         name: "Skill",
         classis: "active",
-        sref: "#!/page/viewSkill//"
+        sref: "#!/page/viewSkill//",
+        icon: "fa-lightbulb-o"
+
     }, {
         name: "SkillCategory",
         classis: "active",
-        sref: "#!/page/viewSkillCategory//"
+        sref: "#!/page/viewSkillCategory//",
+        icon: "fa-folder-open-o"
     }];
 
     return {

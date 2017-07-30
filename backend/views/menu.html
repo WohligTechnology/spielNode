@@ -1,11 +1,11 @@
 <ul>
   <li ng-repeat="menu in navigation" ng-class="{'menu-item-has-children' : menu.subnav!='' }">
-    <a ng-if="menu.sref" href="{{menu.sref}}"><i class="ln-{{menu.icon}}"></i> <span>{{menu.name}}</span></a>
-    <a ng-if="menu.sref == ''" class="o-i"><i class="ln-{{menu.icon}}"></i> <span>{{menu.name}}</span></a>
+    <a ng-if="menu.sref" href="{{menu.sref}}"><i class="fa {{menu.icon}}"  aria-hidden="true"></i> <span>{{menu.name}}</span></a>
+    <a ng-if="menu.sref == ''" class="o-i"><i class="fa {{menu.icon}}"  aria-hidden="true"></i> <span>{{menu.name}}</span></a>
     <ul ng-if="menu.subnav!='';">
       <li ng-repeat="submenu in menu.subnav">
-        <a ui-sref="{{submenu.sref}}" ng-if="submenu.sref"><i class="ln-{{submenu.icon}}"></i> <span>{{submenu.name}}</span></a>
-        <a href="{{submenu.link}}" ng-if="submenu.link"><i class="ln-{{submenu.icon}}"></i> <span>{{submenu.name}}</span></a>
+        <a ui-sref="{{submenu.sref}}" ng-if="submenu.sref"><i class="fa {{submenu.icon}}"  aria-hidden="true"></i> <span>{{submenu.name}}</span></a>
+        <a href="{{submenu.link}}" ng-if="submenu.link"><i class="fa {{submenu.icon}}"  aria-hidden="true"></i> <span>{{submenu.name}}</span></a>
       </li>
     </ul>
   </li>

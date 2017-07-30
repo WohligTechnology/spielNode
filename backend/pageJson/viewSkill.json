@@ -10,6 +10,7 @@
             "tableRef": "name"
         },
         {
+            "type": "selectFromTable",
             "name": "Skill Category",
             "isSort": "",
             "tableRef": "skillCategory",
