@@ -495,12 +495,24 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.state = "";
         $scope.createBox = function (state) {
             $scope.state = state;
-            $scope.model.push({});
-            $scope.editBox("Create", $scope.model[$scope.model.length - 1]);
+            // $scope.model.push({});
+            $scope.editBox("Create");
+        };
+        $scope.submitModal = function (data) {
+            console.log("Submit Modal Called");
+            if ($scope.isBoxCreate) {
+                $scope.model.push(data);
+            }
         };
         $scope.editBox = function (state, data) {
             $scope.state = state;
-            $scope.data = data;
+            if (data) {
+                $scope.data = data;
+                $scope.isBoxCreate = false;
+            } else {
+                $scope.data = {};
+                $scope.isBoxCreate = true;
+            }
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'views/modal/modal.html',

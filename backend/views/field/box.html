@@ -15,8 +15,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="data in model track by $index">
-                   <td ng-repeat="field2 in type.fields track by $index">
-                       
+                    <td ng-repeat="field2 in type.fields track by $index">
+                        <!-- <pre>{{data|json}}</pre>
+                        <pre>{{field2|json}}</pre> -->
                         <view-field type="field2" value="data"></view-field>
                     </td>
                     <td>
