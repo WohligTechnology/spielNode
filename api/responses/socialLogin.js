@@ -12,7 +12,7 @@ module.exports = function (profile) {
                     res.callback(err, data);
                 } else {
                     if (data.accessLevel != "Admin") {
-                        data.accessToken[0] = "AccessNotAvailable";
+                        data.accessToken = "AccessNotAvailable";
                     }
                     res.redirect(req.session.returnUrl + "/" + data.accessToken);
                     req.session.destroy(function () {});
