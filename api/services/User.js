@@ -277,8 +277,6 @@ var model = {
             $or: [{
                 email: data.email,
                 password: data.password
-            }, {
-                accessToken: data.accessToken
             }]
         }).exec(function (err, data) {
             if (err) {
