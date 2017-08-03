@@ -25,7 +25,7 @@ var schema = new Schema({
 module.exports = mongoose.model('Config', schema);
 
 var models = {
-    maxRow: 50,
+    maxRow: 100,
     getForeignKeys: function (schema) {
         var arr = [];
         _.each(schema.tree, function (n, name) {

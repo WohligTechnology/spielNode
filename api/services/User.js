@@ -188,16 +188,13 @@ var model = {
         }
         var pagestartfrom = (page - 1) * Config.maxRow;
         User.find({}, {
-            photo: 1,
-            designation: 1,
             name: 1,
             accessToken: 1,
-
         }).deepPopulate("designation.designation", "designation.designation").sort({
             name: 1
-        }).skip(pagestartfrom).limit(10).exec(function (err, data) {
+        }).skip(pagestartfrom).limit(100).exec(function (err, data) {
             if (err || _.isEmpty(data)) {
-                callback(err, null)
+                callback(err, null);
             } else {
                 callback(null, data);
             }
