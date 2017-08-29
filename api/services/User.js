@@ -283,7 +283,7 @@ var model = {
             } else {
                 callback(null, data)
             }
-        })
+        });
     }
 };
 module.exports = _.assign(module.exports, exports, model);
