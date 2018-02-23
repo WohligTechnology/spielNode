@@ -26,7 +26,7 @@
     "grunt-css-import": "^0.1.8",
     "grunt-cssjoin": "^0.3.0",
     "grunt-sails-linker": "~0.10.1",
-    "grunt-sass": "^1.2.1",
+    "grunt-sass": "2.0.0",
     "grunt-sync": "0.2.4",
     "include-all": "~0.1.6",
     "install": "^0.8.1",
